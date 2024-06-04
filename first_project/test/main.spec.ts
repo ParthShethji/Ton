@@ -6,13 +6,19 @@ import "@ton/test-utils"
 
 describe("main.fc contract tests", () => {
 
-    it("gettind addres correctly", async () => {
+    it("getting addresses correctly and updating counters", async () => {
       const blockchain = await Blockchain.create();
       const codeCell = Cell.fromBoc(Buffer.from(hex, "hex"))[0]
 
+      const intiAddress = await blockchain.treasury("initAddress");
+
       // to create instance of contract the way to use it is to write wrappers for your contract using the Contract interface from ton-core
       const myContract =  blockchain.openContract(
-        await MainContract.createFromConfig({}, codeCell)
+        await MainContract.createFromConfig({
+          number: 0,
+          address: intiAddress.address,
+        }, 
+        codeCell)
       )
 
       const senderWallet = await blockchain.treasury("sender")

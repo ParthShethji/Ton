@@ -1,5 +1,15 @@
 import { Contract, Address, Cell, beginCell, contractAddress, Sender, ContractProvider, SendMode } from "@ton/core";
 
+export type MainContractConfig = {
+  number: number;
+  address: Address;
+};
+
+//  It is going to receive a MainContractConfig type of object, properly pack those parameters into a cell and return it.
+export function mainContractConfigToCell(config: MainContractConfig): Cell {
+  return beginCell().storeUint(config.number, 32).storeAddress(config.address).endCell();
+}
+
 export class MainContract implements Contract{
     constructor(
         readonly address: Address,
@@ -7,8 +17,12 @@ export class MainContract implements Contract{
       ) {}
 
 
-      static createFromConfig(config: any, code: Cell, workchain = 0) {
-        const data = beginCell().endCell();
+      static createFromConfig(
+        config: MainContractConfig, 
+        code: Cell, 
+        workchain = 0
+      ) {
+        const data = mainContractConfigToCell(config)
         const init = { code, data };
         const address = contractAddress(workchain, init);
     
