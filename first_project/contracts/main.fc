@@ -13,7 +13,7 @@
 ;; In order to store the same data in our c4 persistent storage, we are going to use FunC standard function set_data. This function is accepting and storing a Cell. If we want to store more data then fits into a Cell, we can easily write a "link" to another Cell inside of the first one. Such a link is called ref. We can write up to 4 refs into a Cell.
 
     set_data(begin_cell().store_slice(sender_address).end_cell());
-
+    
 }
 
 
