@@ -95,7 +95,7 @@ If the contract wants to process different kinds of messages, then it will use s
 
 
 
-### There are five phases that the transaction goes through: 
+## five phases that the transaction goes through: 
 Storage phase is the phase when the blockchain charges the contract for all the rent that it owes for its existence. And the rent is computed as a price per bit per second.
 
 Credit phase is the phase when the coins attached to incoming message get credited to the contract. 
