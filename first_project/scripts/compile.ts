@@ -19,7 +19,8 @@ async function compileScript() {
   );
 
   const compileResult = await compileFunc({
-    targets: ["./contracts/main.fc"],
+    // targets: ["./contracts/main.fc"],
+    targets: ["./contracts/payment.fc"],
     sources: (x) => fs.readFileSync(x).toString("utf8"),
   });
 
